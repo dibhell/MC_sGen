@@ -114,9 +114,17 @@ class SkinGenerator {
         for (let r = 0; r < 8; r++) {
             for (let c = 0; c < 8; c++) {
                 if (isBald) {
-                    setPixel(8 + c, 0 + r, (r === 0 || r === 7 || c === 0 || c === 7) ? skinShade : ((r + c) % 2 === 0 ? skinLight : skinBase));
+                    let col = skinBase;
+                    if ((r === 0 || r === 7) && (c === 0 || c === 7)) {
+                        col = skinDark;
+                    } else if (r === 0 || r === 7 || c === 0 || c === 7) {
+                        col = skinShade;
+                    } else if (r >= 2 && r <= 5 && c >= 2 && c <= 5) {
+                        col = skinLight;
+                    }
+                    setPixel(8 + c, 0 + r, col);
                 } else {
-                    setPixel(8 + c, 0 + r, (r + c) % 2 === 0 ? hairColor : this.shade(hairColor, 0.90));
+                    setPixel(8 + c, 0 + r, hairColor);
                 }
             }
         }
@@ -127,7 +135,7 @@ class SkinGenerator {
                 if (hasBeard && r < 3) {
                     setPixel(16 + c, 0 + r, beardLight);
                 } else {
-                    setPixel(16 + c, 0 + r, (r + c) % 2 === 0 ? skinBase : skinShade);
+                    setPixel(16 + c, 0 + r, r > 5 ? skinDark : skinShade);
                 }
             }
         }
@@ -136,7 +144,7 @@ class SkinGenerator {
         for (let sideX of [0, 16, 24]) {
             for (let r = 0; r < 8; r++) {
                 for (let c = 0; c < 8; c++) {
-                    let col = isBald ? ((r + c) % 2 === 0 ? skinBase : skinShade) : ((r < 6) ? hairColor : skinShade);
+                    let col = isBald ? (r > 5 ? skinShade : skinBase) : (r < 6 ? hairColor : skinShade);
                     if (hasBeard && r >= 5 && sideX !== 24) {
                         col = beardLight;
                     }
@@ -148,7 +156,7 @@ class SkinGenerator {
         // Twarz (Front: 8, 8, 8, 8)
         for (let r = 0; r < 8; r++) {
             for (let c = 0; c < 8; c++) {
-                let col = (r + c) % 2 === 0 ? skinBase : skinLight;
+                let col = skinBase;
                 if (!isBald && r < 3) {
                     col = hairColor; // grzywka
                 }
