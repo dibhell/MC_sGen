@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Download, CheckCircle2, ShieldCheck, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { Download, ShieldCheck } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export const TextureMap2D = ({ skinCanvas, onDownload }) => {
@@ -15,7 +14,6 @@ export const TextureMap2D = ({ skinCanvas, onDownload }) => {
   }, [skinCanvas]);
 
   const handleDownloadClick = () => {
-    // Confetti celebration
     try {
       confetti({
         particleCount: 80,
@@ -30,10 +28,10 @@ export const TextureMap2D = ({ skinCanvas, onDownload }) => {
 
   return (
     <div className="w-full flex flex-col items-center space-y-4">
-      {/* 2D Canvas with Transparency Checkerboard Background */}
-      <div className="relative group p-2 rounded-2xl bg-black/40 border border-white/10 shadow-inner">
+      {/* 2D Canvas with Inset Minecraft Slot Border & Transparency Grid */}
+      <div className="relative group p-2.5 rounded-lg mc-slot shadow-inner">
         <div
-          className="relative rounded-xl overflow-hidden shadow-2xl"
+          className="relative rounded overflow-hidden shadow-2xl"
           style={{
             backgroundImage: `
               linear-gradient(45deg, #181b24 25%, transparent 25%), 
@@ -55,27 +53,25 @@ export const TextureMap2D = ({ skinCanvas, onDownload }) => {
           />
         </div>
 
-        <div className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-md bg-neutral-900 border border-white/15 text-[10px] font-mono text-emerald-400 font-bold shadow-md">
+        <div className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded bg-neutral-900 border border-white/20 text-[10px] font-mono text-[#55FF55] font-bold shadow-md">
           64 × 64 px
         </div>
       </div>
 
       {/* Verified RGBA Badge */}
-      <div className="flex items-center space-x-1.5 text-xs text-neutral-400 bg-neutral-900/60 px-3 py-1 rounded-full border border-white/10">
-        <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+      <div className="flex items-center space-x-1.5 text-xs text-neutral-300 bg-black/50 px-3 py-1.5 rounded border border-white/10">
+        <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
         <span>Gwarancja <strong>PNG-32 (RGBA)</strong> z kanałem Alpha</span>
       </div>
 
-      {/* Download Action Button */}
-      <motion.button
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.97 }}
+      {/* Download Action Button in 3D Minecraft Style */}
+      <button
         onClick={handleDownloadClick}
-        className="w-full py-3 px-5 rounded-xl font-bold text-sm text-black bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400 hover:from-emerald-300 hover:to-cyan-300 shadow-xl shadow-emerald-500/20 transition-all flex items-center justify-center space-x-2"
+        className="w-full py-3 px-5 rounded-lg text-sm mc-button-3d mc-button-emerald flex items-center justify-center space-x-2"
       >
         <Download className="w-4 h-4" />
         <span>Pobierz Skin (.png)</span>
-      </motion.button>
+      </button>
     </div>
   );
 };

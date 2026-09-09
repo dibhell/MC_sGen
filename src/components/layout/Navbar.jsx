@@ -41,10 +41,10 @@ export const Navbar = ({ onOpenGuide, onResetDemo }) => {
         {/* Action Buttons */}
         <div className="flex items-center space-x-2 sm:space-x-3">
           <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={onResetDemo}
-            className="px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-300 bg-neutral-800/80 hover:bg-neutral-700/80 border border-white/10 transition-colors flex items-center space-x-1.5"
+            className="px-3 py-1.5 rounded-lg text-xs font-bold mc-button-3d mc-button-stone flex items-center space-x-1.5"
             title="Wczytaj postać z klapkami Lidl i liśćmi"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -52,10 +52,10 @@ export const Navbar = ({ onOpenGuide, onResetDemo }) => {
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.97 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
             onClick={onOpenGuide}
-            className="px-3 py-1.5 rounded-lg text-xs font-medium text-neutral-300 bg-neutral-800/80 hover:bg-neutral-700/80 border border-white/10 transition-colors flex items-center space-x-1.5"
+            className="px-3 py-1.5 rounded-lg text-xs font-bold mc-button-3d mc-button-stone flex items-center space-x-1.5"
           >
             <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
             <span className="hidden sm:inline">Instrukcja Launchera</span>
@@ -65,7 +65,7 @@ export const Navbar = ({ onOpenGuide, onResetDemo }) => {
             href="https://github.com/dibhell/MC_sGen"
             target="_blank"
             rel="noreferrer"
-            className="p-2 rounded-lg text-neutral-400 hover:text-white bg-neutral-800/50 hover:bg-neutral-800 border border-white/10 transition-colors"
+            className="p-2 rounded-lg mc-button-3d mc-button-stone text-neutral-300 hover:text-white"
             title="Repozytorium GitHub"
           >
             <GithubIcon className="w-4 h-4" />
