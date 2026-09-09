@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 
+// Zapewnienie kompatybilności wstecznej dla starszych rendererów WebGLRenderer
+if (THREE.Material && typeof THREE.Material.prototype.onBuild !== 'function') {
+  THREE.Material.prototype.onBuild = function () {};
+}
+
 /**
  * Proceduralny generator tekstur i bloków Minecrafta 3D
  */
