@@ -8,7 +8,7 @@ export default defineConfig({
   base: '/MC_sGen/',
   resolve: {
     alias: {
-      three: path.resolve(__dirname, 'node_modules/skinview3d/node_modules/three')
+      three: path.resolve(__dirname, 'node_modules/three')
     }
   },
   build: {
