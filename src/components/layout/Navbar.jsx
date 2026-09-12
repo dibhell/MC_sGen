@@ -10,41 +10,41 @@ const GithubIcon = ({ className = "w-4 h-4" }) => (
 
 export const Navbar = ({ onOpenGuide, onResetDemo }) => {
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#090a0f]/80 backdrop-blur-xl">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <header className="sticky top-0 z-40 w-full border-b border-white/10 bg-[#08090e]/90 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
         {/* Logo & Title */}
         <div className="flex items-center space-x-3">
           <motion.div
-            whileHover={{ scale: 1.08, rotate: 5 }}
+            whileHover={{ scale: 1.05, rotate: 3 }}
             whileTap={{ scale: 0.95 }}
-            className="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-500 to-cyan-400 p-[1px] shadow-lg shadow-emerald-500/20"
+            className="w-8 h-8 rounded-lg bg-gradient-to-tr from-emerald-500 to-cyan-400 p-[1px] shadow-md shadow-emerald-500/20"
           >
-            <div className="w-full h-full bg-[#0d0f17] rounded-[11px] flex items-center justify-center">
-              <Box className="w-5 h-5 text-emerald-400" />
+            <div className="w-full h-full bg-[#0d0f17] rounded-[7px] flex items-center justify-center">
+              <Box className="w-4 h-4 text-emerald-400" />
             </div>
           </motion.div>
           <div>
             <div className="flex items-center space-x-2">
-              <span className="font-extrabold text-lg tracking-tight bg-gradient-to-r from-white via-neutral-200 to-neutral-400 bg-clip-text text-transparent">
+              <span className="font-extrabold text-base sm:text-lg tracking-tight text-white">
                 MC_sGen
               </span>
-              <span className="px-2 py-0.5 text-[10px] font-bold tracking-wider uppercase rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+              <span className="px-1.5 py-0.5 text-[9px] font-bold tracking-wider uppercase rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
                 v2.0 Pro
               </span>
             </div>
-            <p className="text-xs text-neutral-400 hidden sm:block">
-              Generator Skórek Minecraft 64×64 px z Analizą Wizyjną AI
+            <p className="text-[11px] text-neutral-400 hidden md:block">
+              Generator Skórek Minecraft 64×64 px • WebGL & AI Vision
             </p>
           </div>
         </div>
 
         {/* Action Buttons */}
-        <div className="flex items-center space-x-2 sm:space-x-3">
+        <div className="flex items-center space-x-2 sm:space-x-2.5">
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={onResetDemo}
-            className="px-3 py-1.5 rounded-lg text-xs font-bold mc-button-3d mc-button-stone flex items-center space-x-1.5"
+            className="px-2.5 py-1.5 rounded-lg text-xs font-bold mc-button-3d mc-button-stone flex items-center space-x-1.5"
             title="Wczytaj postać z klapkami Lidl i liśćmi"
           >
             <Sparkles className="w-3.5 h-3.5 text-amber-400" />
@@ -55,7 +55,7 @@ export const Navbar = ({ onOpenGuide, onResetDemo }) => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             onClick={onOpenGuide}
-            className="px-3 py-1.5 rounded-lg text-xs font-bold mc-button-3d mc-button-stone flex items-center space-x-1.5"
+            className="px-2.5 py-1.5 rounded-lg text-xs font-bold mc-button-3d mc-button-stone flex items-center space-x-1.5"
           >
             <BookOpen className="w-3.5 h-3.5 text-cyan-400" />
             <span className="hidden sm:inline">Instrukcja Launchera</span>
@@ -65,7 +65,7 @@ export const Navbar = ({ onOpenGuide, onResetDemo }) => {
             href="https://github.com/dibhell/MC_sGen"
             target="_blank"
             rel="noreferrer"
-            className="p-2 rounded-lg mc-button-3d mc-button-stone text-neutral-300 hover:text-white"
+            className="p-1.5 rounded-lg mc-button-3d mc-button-stone text-neutral-300 hover:text-white"
             title="Repozytorium GitHub"
           >
             <GithubIcon className="w-4 h-4" />

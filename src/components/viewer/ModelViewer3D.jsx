@@ -154,77 +154,83 @@ export const ModelViewer3D = ({ skinCanvas, modelType = 'default' }) => {
       {/* 3D Canvas Container */}
       <div
         ref={containerRef}
-        className="relative w-full h-[380px] sm:h-[440px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none"
+        className="relative w-full h-[320px] sm:h-[360px] flex items-center justify-center overflow-hidden cursor-grab active:cursor-grabbing select-none rounded-xl"
       >
         {/* Subtle Ambient Minecraft lighting glow */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <div className="w-56 h-56 rounded-full bg-gradient-to-b from-emerald-500/10 via-cyan-500/10 to-transparent blur-3xl" />
+          <div className="w-48 h-48 rounded-full bg-gradient-to-b from-emerald-500/10 via-cyan-500/10 to-transparent blur-3xl" />
         </div>
 
         {/* The WebGL Canvas */}
         <canvas ref={canvasRef} className="z-10 w-full h-full block" />
 
-        {/* Top Controls: 3D Snapshot & Rotate */}
-        <div className="absolute top-4 right-4 z-20 flex items-center space-x-2">
-          <button
-            onClick={takeScreenshot}
-            className="p-2.5 rounded-lg mc-button-3d mc-button-stone text-neutral-300 hover:text-white"
-            title="Pobierz zdjęcie 3D w przezroczystym PNG"
-          >
-            <Camera className="w-4 h-4" />
-          </button>
-        </div>
-
-        <div className="absolute top-4 left-4 z-20">
+        {/* Top Floating Controls: Rotate & Screenshot */}
+        <div className="absolute top-3 left-3 z-20 flex items-center space-x-1.5">
           <button
             onClick={toggleRotate}
-            className={`p-2.5 rounded-lg mc-button-3d ${
+            className={`p-2 rounded-lg mc-button-3d text-xs flex items-center space-x-1 ${
               isRotating ? 'mc-button-emerald' : 'mc-button-stone text-neutral-400'
             }`}
             title={isRotating ? 'Zatrzymaj obracanie' : 'Włącz obracanie 360°'}
           >
-            <RotateCw className={`w-4 h-4 ${isRotating ? 'animate-spin' : ''}`} style={{ animationDuration: '7s' }} />
+            <RotateCw className={`w-3.5 h-3.5 ${isRotating ? 'animate-spin' : ''}`} style={{ animationDuration: '7s' }} />
+            <span className="text-[10px] hidden sm:inline font-mono">360°</span>
           </button>
         </div>
 
-        {/* Pedestal Selector floating at bottom of 3D frame */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-1.5 p-1 rounded-md bg-black/70 border border-white/10 backdrop-blur-md text-[11px] font-semibold">
+        <div className="absolute top-3 right-3 z-20 flex items-center space-x-1.5">
+          <button
+            onClick={takeScreenshot}
+            className="p-2 rounded-lg mc-button-3d mc-button-stone text-neutral-300 hover:text-white flex items-center space-x-1"
+            title="Pobierz zrzut 3D w przezroczystym PNG"
+          >
+            <Camera className="w-3.5 h-3.5" />
+            <span className="text-[10px] hidden sm:inline font-mono">F2</span>
+          </button>
+        </div>
+
+        {/* Pedestal Selector (Clean Top-Center overlay badge) */}
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 flex items-center space-x-1 p-1 rounded-lg bg-black/75 border border-white/10 backdrop-blur-md text-[10px] font-mono shadow-lg">
+          <span className="text-neutral-400 px-1 font-sans hidden sm:inline">Podest:</span>
           <button
             type="button"
             onClick={() => setPedestalType('grass')}
-            className={`px-2 py-1 rounded transition-all ${
-              pedestalType === 'grass' ? 'bg-[#5c8e32] text-white shadow-sm font-bold' : 'text-neutral-400 hover:text-white'
+            className={`px-2 py-0.5 rounded transition-all flex items-center space-x-1 ${
+              pedestalType === 'grass' ? 'bg-[#5c8e32] text-white font-bold shadow' : 'text-neutral-400 hover:text-white'
             }`}
           >
-            🌱 Trawa
+            <span className="w-2 h-2 rounded-sm bg-[#5c8e32] border border-white/40 inline-block" />
+            <span>Trawa</span>
           </button>
           <button
             type="button"
             onClick={() => setPedestalType('diamond')}
-            className={`px-2 py-1 rounded transition-all ${
-              pedestalType === 'diamond' ? 'bg-[#2de4df] text-black shadow-sm font-bold' : 'text-neutral-400 hover:text-white'
+            className={`px-2 py-0.5 rounded transition-all flex items-center space-x-1 ${
+              pedestalType === 'diamond' ? 'bg-[#2de4df] text-black font-bold shadow' : 'text-neutral-400 hover:text-white'
             }`}
           >
-            💎 Diament
+            <span className="w-2 h-2 rounded-sm bg-[#2de4df] border border-black/40 inline-block" />
+            <span>Diament</span>
           </button>
           <button
             type="button"
             onClick={() => setPedestalType('obsidian')}
-            className={`px-2 py-1 rounded transition-all ${
-              pedestalType === 'obsidian' ? 'bg-[#3c2b69] text-white shadow-sm font-bold' : 'text-neutral-400 hover:text-white'
+            className={`px-2 py-0.5 rounded transition-all flex items-center space-x-1 ${
+              pedestalType === 'obsidian' ? 'bg-[#3c2b69] text-white font-bold shadow' : 'text-neutral-400 hover:text-white'
             }`}
           >
-            🟣 Obsydian
+            <span className="w-2 h-2 rounded-sm bg-[#3c2b69] border border-white/40 inline-block" />
+            <span>Obsydian</span>
           </button>
         </div>
       </div>
 
-      {/* 3D Minecraft Animation Control Bar */}
-      <div className="w-full px-4 pb-4 pt-2 flex items-center justify-center gap-1.5 sm:gap-2 flex-wrap z-20">
+      {/* 3D Minecraft Animation Control Bar (Segmented toolbar) */}
+      <div className="w-full px-2 pt-2.5 flex items-center justify-center gap-1 sm:gap-1.5 flex-wrap z-20">
         <button
           onClick={() => setAnimation('walk')}
-          className={`px-3 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
-            activeAnim === 'walk' ? 'mc-button-emerald' : 'mc-button-stone'
+          className={`px-2.5 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
+            activeAnim === 'walk' ? 'mc-button-emerald' : 'mc-button-stone text-neutral-300'
           }`}
         >
           <Footprints className="w-3.5 h-3.5" />
@@ -233,8 +239,8 @@ export const ModelViewer3D = ({ skinCanvas, modelType = 'default' }) => {
 
         <button
           onClick={() => setAnimation('run')}
-          className={`px-3 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
-            activeAnim === 'run' ? 'mc-button-emerald' : 'mc-button-stone'
+          className={`px-2.5 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
+            activeAnim === 'run' ? 'mc-button-emerald' : 'mc-button-stone text-neutral-300'
           }`}
         >
           <Flame className="w-3.5 h-3.5" />
@@ -243,8 +249,8 @@ export const ModelViewer3D = ({ skinCanvas, modelType = 'default' }) => {
 
         <button
           onClick={() => setAnimation('fly')}
-          className={`px-3 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
-            activeAnim === 'fly' ? 'mc-button-emerald' : 'mc-button-stone'
+          className={`px-2.5 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
+            activeAnim === 'fly' ? 'mc-button-emerald' : 'mc-button-stone text-neutral-300'
           }`}
         >
           <Plane className="w-3.5 h-3.5" />
@@ -253,8 +259,8 @@ export const ModelViewer3D = ({ skinCanvas, modelType = 'default' }) => {
 
         <button
           onClick={() => setAnimation('idle')}
-          className={`px-3 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
-            activeAnim === 'idle' ? 'mc-button-emerald' : 'mc-button-stone'
+          className={`px-2.5 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
+            activeAnim === 'idle' ? 'mc-button-emerald' : 'mc-button-stone text-neutral-300'
           }`}
         >
           <Sparkles className="w-3.5 h-3.5" />
@@ -263,7 +269,7 @@ export const ModelViewer3D = ({ skinCanvas, modelType = 'default' }) => {
 
         <button
           onClick={() => setAnimation('none')}
-          className={`px-3 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
+          className={`px-2.5 py-1.5 rounded-lg text-xs mc-button-3d flex items-center space-x-1.5 ${
             activeAnim === 'none' ? 'mc-button-active' : 'mc-button-stone text-neutral-400'
           }`}
           title="Pauza / Stop klatka"

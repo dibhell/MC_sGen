@@ -56,9 +56,9 @@ export const DropZone = ({ onImageSelected, isAnalyzing, analysisStatus }) => {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`relative group cursor-pointer rounded-xl p-6 sm:p-8 transition-all duration-200 flex flex-col items-center justify-center text-center overflow-hidden mc-slot ${
+        className={`relative group cursor-pointer rounded-xl p-5 sm:p-6 transition-all duration-150 flex flex-col items-center justify-center text-center overflow-hidden mc-slot ${
           isDragOver
-            ? 'bg-emerald-500/10 border-emerald-400/50 shadow-lg shadow-emerald-500/20 scale-[1.01]'
+            ? 'bg-emerald-500/15 border-emerald-400/60 shadow-[0_0_20px_rgba(16,185,129,0.3)] scale-[1.01]'
             : 'hover:bg-neutral-900/90'
         }`}
       >
@@ -71,8 +71,8 @@ export const DropZone = ({ onImageSelected, isAnalyzing, analysisStatus }) => {
         />
 
         {isAnalyzing ? (
-          <div className="flex flex-col items-center space-y-3 py-4">
-            <Loader2 className="w-10 h-10 text-[#55FF55] animate-spin" />
+          <div className="flex flex-col items-center space-y-3 py-3">
+            <Loader2 className="w-9 h-9 text-emerald-400 animate-spin" />
             <div className="text-sm font-bold text-white tracking-wide">
               {analysisStatus || 'Analizowanie sylwetki i cech ubioru...'}
             </div>
@@ -81,24 +81,24 @@ export const DropZone = ({ onImageSelected, isAnalyzing, analysisStatus }) => {
             </p>
           </div>
         ) : (
-          <div className="flex flex-col items-center space-y-3">
-            <div className="w-14 h-14 rounded-lg bg-neutral-800 border-2 border-[#3c445c] flex items-center justify-center text-emerald-400 group-hover:text-emerald-300 group-hover:scale-105 transition-all shadow-md">
-              <UploadCloud className="w-7 h-7" />
+          <div className="flex flex-col items-center space-y-2.5">
+            <div className="w-12 h-12 rounded-xl bg-neutral-900 border-2 border-[#2b3347] flex items-center justify-center text-emerald-400 group-hover:text-emerald-300 group-hover:scale-105 transition-all shadow-md">
+              <UploadCloud className="w-6 h-6" />
             </div>
 
             <div className="space-y-1">
-              <p className="text-sm sm:text-base font-bold text-white">
+              <p className="text-sm font-bold text-white tracking-tight">
                 Przeciągnij i upuść swoje zdjęcie tutaj
               </p>
               <p className="text-xs text-neutral-400">
-                lub kliknij, aby wybrać plik (albo wklej ze schowka <kbd className="px-1.5 py-0.5 rounded bg-black/60 border border-white/20 text-[10px] font-mono text-[#55FF55]">Ctrl + V</kbd>)
+                lub kliknij plik (albo wklej ze schowka <kbd className="px-1.5 py-0.5 rounded bg-black/70 border border-white/20 text-[10px] font-mono text-emerald-400 font-bold">Ctrl + V</kbd>)
               </p>
             </div>
 
-            <div className="flex items-center space-x-2 pt-1 text-[11px] font-mono text-neutral-400">
-              <span className="px-2 py-0.5 rounded bg-black/40 border border-white/10">.JPG</span>
-              <span className="px-2 py-0.5 rounded bg-black/40 border border-white/10">.PNG</span>
-              <span className="px-2 py-0.5 rounded bg-black/40 border border-white/10">.WEBP</span>
+            <div className="flex items-center space-x-1.5 pt-0.5 text-[10px] font-mono text-neutral-400">
+              <span className="px-1.5 py-0.5 rounded bg-black/50 border border-white/10">JPG</span>
+              <span className="px-1.5 py-0.5 rounded bg-black/50 border border-white/10">PNG</span>
+              <span className="px-1.5 py-0.5 rounded bg-black/50 border border-white/10">WEBP</span>
             </div>
           </div>
         )}
